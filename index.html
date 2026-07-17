@@ -32,7 +32,16 @@
       <nav class="nav-links">
         <a href="#features">功能</a>
         <a href="#ai">AI 控制</a>
-        <a href="docs.html">文档</a>
+        <span class="nav-dropdown">
+          <a href="docs.html">完整文档</a>
+          <button class="nav-dropdown-arrow" type="button" aria-label="切换文档模式" aria-expanded="false">
+            <svg viewBox="0 0 10 6" fill="currentColor"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="docs.html" data-docs-mode="full">完整文档</a>
+            <a href="docs.html" data-docs-mode="simple">简易文档</a>
+          </div>
+        </span>
         <a href="download.html">下载</a>
       </nav>
       <div class="nav-actions">
@@ -198,7 +207,6 @@
         <div class="code-card reveal d2" data-tabs>
           <div class="tabs" role="tablist">
             <button class="tab active" role="tab" aria-selected="true" data-tab="mcp">MCP 工具调用</button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="cli">等价 CLI 命令</button>
           </div>
           <div class="tab-panel active" data-panel="mcp">
             <div class="code">
@@ -212,16 +220,6 @@
     <span class="tok-str">"position"</span>: <span class="tok-str">"atEnd"</span>
   }
 }</code></pre>
-            </div>
-          </div>
-          <div class="tab-panel" data-panel="cli">
-            <div class="code">
-              <pre><code><span class="tok-com"># 保持 IdeaMarkdown 运行，然后在 PowerShell 执行</span>
-ideamarkdown-cli insert-code go <span class="tok-str">"func quicksort(a []int) []int { ... }"</span> --position atEnd
-
-<span class="tok-com"># 读取当前文档 / 落盘保存</span>
-ideamarkdown-cli get
-ideamarkdown-cli save</code></pre>
             </div>
           </div>
         </div>

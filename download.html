@@ -31,7 +31,16 @@
       <nav class="nav-links">
         <a href="index.html#features">功能</a>
         <a href="index.html#ai">AI 控制</a>
-        <a href="docs.html">文档</a>
+        <span class="nav-dropdown">
+          <a href="docs.html">完整文档</a>
+          <button class="nav-dropdown-arrow" type="button" aria-label="切换文档模式" aria-expanded="false">
+            <svg viewBox="0 0 10 6" fill="currentColor"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="docs.html" data-docs-mode="full">完整文档</a>
+            <a href="docs.html" data-docs-mode="simple">简易文档</a>
+          </div>
+        </span>
         <a href="download.html" class="active">下载</a>
       </nav>
       <div class="nav-actions">
@@ -79,7 +88,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>
             <h3>内置 AI 控制组件</h3>
           </div>
-          <p class="fmt">MCP 服务器与命令行 CLI 随安装包一同安装</p>
+          <p class="fmt">MCP 服务器随安装包一同安装</p>
           <a class="btn btn-ghost" href="docs.html#ai-control">
             查看 AI 控制文档
           </a>
@@ -97,8 +106,8 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">随包附带</span>
-        <h2>MCP 服务器与 CLI，开箱即用</h2>
-        <p>安装 IdeaMarkdown 后，AI 控制所需的 <code>ideamarkdown-mcp.exe</code> 与 <code>ideamarkdown-cli.exe</code> 已在安装目录中，无需单独下载或自行编译。</p>
+        <h2>MCP 服务器，开箱即用</h2>
+        <p>安装 IdeaMarkdown 后，AI 控制所需的 <code>ideamarkdown-mcp.exe</code> 已在安装目录中，无需单独下载或自行编译。</p>
       </div>
       <p class="center muted" style="margin-top: 8px;">
         配置方法与命令详见 <a href="docs.html#ai-control">AI 控制指南</a>。

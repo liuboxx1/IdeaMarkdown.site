@@ -31,7 +31,16 @@
       <nav class="nav-links">
         <a href="index.html#features">功能</a>
         <a href="index.html#ai">AI 控制</a>
-        <a href="docs.html" class="active">文档</a>
+        <span class="nav-dropdown">
+          <a href="docs.html" class="active">完整文档</a>
+          <button class="nav-dropdown-arrow" type="button" aria-label="切换文档模式" aria-expanded="false">
+            <svg viewBox="0 0 10 6" fill="currentColor"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="docs.html" data-docs-mode="full">完整文档</a>
+            <a href="docs.html" data-docs-mode="simple">简易文档</a>
+          </div>
+        </span>
         <a href="download.html">下载</a>
       </nav>
       <div class="nav-actions">
@@ -57,7 +66,7 @@
       <!-- 侧边目录 -->
       <aside class="docs-sidebar">
         <h4>开始</h4>
-        <a href="#intro">简介</a>
+        <a href="#intro" data-simple-hide>简介</a>
         <a href="#install">安装</a>
         <h4>编辑器</h4>
         <a href="#editing">编辑与区块</a>
@@ -65,32 +74,32 @@
         <a href="#code-blocks">代码块</a>
         <a href="#slash">斜杠命令</a>
         <a href="#math">公式与图表</a>
-        <h4>外观与导出</h4>
-        <a href="#themes">主题与字号</a>
-        <a href="#export">导出 HTML</a>
+        <h4 data-simple-hide>外观与导出</h4>
+        <a href="#themes" data-simple-hide>主题与字号</a>
+        <a href="#export" data-simple-hide>导出 HTML</a>
         <h4>AI 控制</h4>
         <a href="#ai-control">概述</a>
         <a href="#ai-security">工作原理与安全</a>
-        <a href="#mcp">MCP 服务器</a>
-        <a href="#mcp-tools">MCP 工具</a>
-        <a href="#cli">CLI 命令</a>
+        <a href="#mcp">MCP 使用指南</a>
+        <a href="#mcp-guide">　三步上手</a>
+        <a href="#mcp-tools">MCP 工具参考</a>
         <a href="#ai-demo">端到端示例</a>
-        <h4>其它</h4>
-        <a href="#faq">常见问题</a>
+        <h4 data-simple-hide>其它</h4>
+        <a href="#faq" data-simple-hide>常见问题</a>
       </aside>
 
       <!-- 正文 -->
       <main class="docs-content">
-        <section id="intro">
+        <section id="intro" data-simple-hide>
           <h1>IdeaMarkdown 文档</h1>
           <p class="doc-lead">IdeaMarkdown 是一款桌面 Markdown 编辑器：编辑当前区块时显示源码，其余内容以排版后的形式展示，兼顾写作、笔记与轻量技术文档编辑。</p>
-          <p>本手册涵盖安装、编辑器功能、主题与导出，以及通过 <strong>MCP</strong> 与 <strong>CLI</strong> 让 AI 助手直接操作当前文档的完整用法。</p>
+          <p>本手册涵盖安装、编辑器功能、主题与导出，以及通过 <strong>MCP</strong> 让 AI 助手直接操作当前文档的完整用法。</p>
         </section>
 
         <section id="install">
           <h2>安装</h2>
-          <p>前往 <a href="download.html">下载页</a> 获取 Windows 安装程序（<code>.exe</code>）。当前版本 <strong>v<span data-version>0.1.4</span></strong>，默认安装到 <code>C:\Users\&lt;用户名&gt;\AppData\Local\IdeaMarkdown\</code>。</p>
-          <p>安装包会同时附带 AI 控制所需的 <code>ideamarkdown-mcp.exe</code> 与 <code>ideamarkdown-cli.exe</code>，与主程序位于同一目录，无需单独下载。</p>
+          <p>前往 <a href="download.html">下载页</a> 获取 Windows 安装程序（<code>.exe</code>）。当前版本 <strong>v<span data-version>0.1.4</span></strong>。安装时你可以自定义安装位置；如果不改，NSIS 安装程序的默认路径为 <code>C:\Users\&lt;用户名&gt;\AppData\Local\IdeaMarkdown\</code>。</p>
+          <p>安装包会同时附带 AI 控制所需的 <code>ideamarkdown-mcp.exe</code>，与主程序位于同一目录，无需单独下载。</p>
           <div class="callout">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
             <span>安装完成后，双击任意 <code>.md</code> / <code>.markdown</code> 文件即可用 IdeaMarkdown 打开（已注册文件关联）。</span>
@@ -143,75 +152,100 @@
           <p>内建 <strong>KaTeX</strong> 数学公式与 <strong>Mermaid</strong> 图表渲染。行内与块级公式在展示态自动排版，Mermaid 代码块渲染为流程图、时序图等图形，适合技术文档。</p>
         </section>
 
-        <section id="themes">
+        <section id="themes" data-simple-hide>
           <h2>主题与字号</h2>
           <p>提供三种主题：<strong>跟随系统</strong>、<strong>亮色</strong>、<strong>暗黑</strong>；正文字号可在 <strong>12–18px</strong> 之间调整。偏好通过本地存储持久化，桌面端与 Web 预览通用。</p>
         </section>
 
-        <section id="export">
+        <section id="export" data-simple-hide>
           <h2>导出 HTML</h2>
           <p>可将当前文档导出为样式内联的<strong>独立 HTML 文件</strong>，无需外部资源即可在任意浏览器中打开，便于分享与归档。</p>
         </section>
 
         <section id="ai-control">
-          <h2>AI 控制（MCP + CLI）</h2>
-          <p class="doc-lead">IdeaMarkdown 可以由支持 MCP 的 AI 助手或命令行脚本控制当前打开的文档。</p>
-          <p>所有编辑都先进入窗口中的<strong>内存文档模型</strong>，可立即在界面中看到，并可按 <kbd>Ctrl</kbd> + <kbd>Z</kbd> 撤销；只有调用 <code>save_document</code>（CLI 中为 <code>save</code>）才会写入磁盘。</p>
+          <h2>AI 控制（MCP）</h2>
+          <p class="doc-lead">IdeaMarkdown 安装后即可被 AI 助手（通过 MCP）直接操作当前打开的 Markdown 文档——不用写一行代码，装完就用。</p>
+          <p>所有编辑都先进入 IdeaMarkdown 窗口中的<strong>内存文档模型</strong>，你能立刻在界面上看到变化，并可按 <kbd>Ctrl</kbd> + <kbd>Z</kbd> 撤销；AI 对文档的改动<strong>不会自动写入磁盘</strong>，只有调用 <code>save_document</code> 才会落盘。</p>
         </section>
 
         <section id="ai-security">
           <h2>工作原理与安全</h2>
-          <p>应用每次启动时会：</p>
+          <p>每次启动 IdeaMarkdown 时，它会自动完成以下三步：</p>
           <ol>
-            <li>在随机端口启动仅绑定到 <code>127.0.0.1</code> 的 HTTP 控制服务。</li>
-            <li>生成新的随机会话令牌。</li>
-            <li>将发现文件写到 <code>%APPDATA%\com.ideamarkdown.app\control.json</code>：</li>
+            <li>在随机端口上启动一个仅绑定到 <code>127.0.0.1</code>（本机）的 HTTP 控制服务。</li>
+            <li>生成一个全新的随机会话令牌。</li>
+            <li>将端口和令牌写入发现文件 <code>%APPDATA%\com.ideamarkdown.app\control.json</code>：</li>
           </ol>
           <div class="code">
             <pre><code>{ <span class="tok-str">"port"</span>: <span class="tok-num">51234</span>, <span class="tok-str">"token"</span>: <span class="tok-str">"&lt;uuid&gt;"</span> }</code></pre>
           </div>
-          <p>客户端读取该文件，然后向 <code>http://127.0.0.1:&lt;port&gt;/control</code> 发送请求，并带上 <code>Authorization: Bearer &lt;token&gt;</code>。服务只接受回环连接；令牌在每次启动时轮换，旧令牌随应用重启失效。</p>
+          <p>MCP 服务器启动时会自动读取这个发现文件，然后向 <code>http://127.0.0.1:&lt;port&gt;/control</code> 发送请求，并带上 <code>Authorization: Bearer &lt;token&gt;</code>。整个过程<strong>对你完全透明</strong>——你不需要手动处理端口或令牌。</p>
+          <p>服务只接受本机回环连接，令牌每次启动都会轮换，旧令牌随应用重启立即失效。</p>
           <div class="callout warn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>
-            <span>不要把发现文件中的令牌共享给不受信任的程序。</span>
+            <span>不要把 <code>control.json</code> 里的令牌分享给不受信任的程序。</span>
           </div>
           <div class="callout">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-            <span><b>应用重启恢复：</b><code>ideamarkdown-mcp.exe</code> 和 <code>ideamarkdown-cli.exe</code> 会在第一次请求失败后自动重新读取 <code>control.json</code> 并重试一次，因此通常能在 IdeaMarkdown 重启后自动恢复。</span>
+            <span><b>应用重启自动恢复：</b>如果 IdeaMarkdown 重新启动了，<code>ideamarkdown-mcp.exe</code> 会在第一次请求失败后自动重读 <code>control.json</code> 并重试一次，通常不需要你手动干预。</span>
           </div>
         </section>
 
+        <!-- ============================================================ -->
+        <!-- MCP                                                          -->
+        <!-- ============================================================ -->
         <section id="mcp">
-          <h2>MCP 服务器</h2>
-          <p>MCP 服务器使用 stdio 传输，不需要参数；使用前应先启动 IdeaMarkdown。<code>ideamarkdown-mcp.exe</code> 随安装包附带，默认位于安装目录 <code>C:\Users\&lt;用户名&gt;\AppData\Local\IdeaMarkdown\</code>。</p>
+          <h2>MCP：让 AI 助手直接操作你的文档</h2>
+          <p class="doc-lead">MCP 服务器 <code>ideamarkdown-mcp.exe</code> 随安装包附带，位于安装目录。配置一次后，AI 助手就可以读取、修改、保存你当前在 IdeaMarkdown 中打开的文档。</p>
 
-          <h3>Cursor 配置</h3>
-          <p>在 Cursor 的 <code>mcp.json</code> 中添加以下配置，并将路径替换为实际绝对路径：</p>
-          <div class="code">
-            <pre><code>{
+          <h3 id="mcp-guide">一步一步来</h3>
+          <p><strong>总共只需 3 步，大约 2 分钟。</strong></p>
+          <ol>
+            <li><strong>启动 IdeaMarkdown</strong>，并打开（或新建）一个 <code>.md</code> 文件。</li>
+            <li>
+              <p><strong>配置 AI 客户端</strong>。打开你使用的 AI 工具的 MCP 配置文件（二选一），添加以下内容。注意把 <code>&lt;安装路径&gt;</code> 替换为 IdeaMarkdown 的实际安装目录：</p>
+              <p><b>Cursor</b> — 打开 Cursor 设置 → MCP → 找到 <code>mcp.json</code>：</p>
+              <div class="code">
+                <pre><code>{
   <span class="tok-str">"mcpServers"</span>: {
     <span class="tok-str">"ideamarkdown"</span>: {
-      <span class="tok-str">"command"</span>: <span class="tok-str">"C:\\Users\\&lt;用户名&gt;\\AppData\\Local\\IdeaMarkdown\\ideamarkdown-mcp.exe"</span>
+      <span class="tok-str">"command"</span>: <span class="tok-str">"&lt;安装路径&gt;\\ideamarkdown-mcp.exe"</span>
     }
   }
 }</code></pre>
+              </div>
+              <p><b>Claude Desktop</b> — 打开 <code>claude_desktop_config.json</code>：</p>
+              <div class="code">
+                <pre><code>{
+  <span class="tok-str">"mcpServers"</span>: {
+    <span class="tok-str">"ideamarkdown"</span>: {
+      <span class="tok-str">"command"</span>: <span class="tok-str">"&lt;安装路径&gt;\\ideamarkdown-mcp.exe"</span>
+    }
+  }
+}</code></pre>
+              </div>
+            </li>
+            <li><strong>重启 AI 客户端</strong>，使其加载新配置。客户端启动后会看到 <code>ideamarkdown</code> 服务器处于已连接状态。</li>
+          </ol>
+          <p>完成以上三步之后，你就可以<strong>在聊天中用自然语言指挥 AI 操作 IdeaMarkdown</strong>了。比如：</p>
+          <div class="code">
+            <pre><code><span class="tok-com">你（在 Cursor / Claude 的对话框中输入）：</span>
+"帮我在当前文档末尾插入一段 ## 待办事项 的标题，下面加三个任务"
+
+<span class="tok-com">或者：</span>
+"读取当前文档内容，帮我把里面的英文引号全部替换成中文引号"</code></pre>
           </div>
+          <p>AI 会自动调用对应的 MCP 工具来完成任务，IdeaMarkdown 窗口中会<strong>实时显示</strong>结果。</p>
 
-          <h3>Claude Desktop 配置</h3>
-          <p>在 <code>claude_desktop_config.json</code> 中添加：</p>
-          <div class="code">
-            <pre><code>{
-  <span class="tok-str">"mcpServers"</span>: {
-    <span class="tok-str">"ideamarkdown"</span>: {
-      <span class="tok-str">"command"</span>: <span class="tok-str">"C:\\Users\\&lt;用户名&gt;\\AppData\\Local\\IdeaMarkdown\\ideamarkdown-mcp.exe"</span>
-    }
-  }
-}</code></pre>
+          <div class="callout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span><b>怎么确定安装路径？</b>NSIS 安装程序默认安装到 <code>C:\Users\&lt;你的用户名&gt;\AppData\Local\IdeaMarkdown\</code>；如果你在安装时选择了其它位置，请以你实际选择的路径为准。不确定的话，可以在开始菜单搜索 IdeaMarkdown，右键「打开文件位置」即可看到安装目录。</span>
           </div>
         </section>
 
         <section id="mcp-tools">
-          <h2>MCP 工具</h2>
+          <h2>MCP 可用工具</h2>
+          <p>配置完成后，AI 助手可以使用以下 5 个工具来操作文档。你不需要手动调用它们——只要用自然语言告诉 AI 你想做什么，AI 会自动选择合适的工具。</p>
           <table>
             <thead>
               <tr><th>工具</th><th>参数</th><th>作用</th></tr>
@@ -220,76 +254,68 @@
               <tr>
                 <td><code>get_document</code></td>
                 <td>无</td>
-                <td>返回当前文档的 Markdown、区块数量和活动区块索引。</td>
+                <td>读取当前文档的完整 Markdown 内容、区块数量和当前活动区块索引。</td>
               </tr>
               <tr>
                 <td><code>insert_block</code></td>
                 <td><code>markdown</code>（必填）、<code>position</code>（可选）、<code>after_block_index</code>（可选）</td>
-                <td>插入一个或多个 Markdown 区块。</td>
+                <td>在文档中插入一个或多个 Markdown 区块（标题、段落、列表等）。</td>
               </tr>
               <tr>
                 <td><code>insert_code_block</code></td>
                 <td><code>lang</code>（必填）、<code>code</code>（必填）、<code>position</code>、<code>after_block_index</code></td>
-                <td>插入带语言标识的代码块。</td>
+                <td>插入一段带语言标识的围栏代码块。适用于让 AI 帮你写代码示例。</td>
               </tr>
               <tr>
                 <td><code>replace_document</code></td>
                 <td><code>markdown</code>（必填）</td>
-                <td>用给定 Markdown 替换当前文档全部内容。</td>
+                <td>用给定内容替换整个文档。适合让 AI 帮你重写或格式化整篇文章。</td>
               </tr>
               <tr>
                 <td><code>save_document</code></td>
                 <td>无</td>
-                <td>将当前文档保存到原路径；未保存的新文档会打开保存对话框。</td>
+                <td>将当前文档保存到原路径。未保存过的新文档会弹出保存对话框。</td>
               </tr>
             </tbody>
           </table>
-          <h3>参数说明</h3>
+          <h3>position 参数说明</h3>
           <ul>
-            <li><code>position</code>：可取 <code>atEnd</code>、<code>atCursor</code> 或 <code>afterBlock</code>，默认 <code>atEnd</code>。</li>
-            <li><code>after_block_index</code>：当 <code>position=afterBlock</code> 时使用的从零开始的区块索引；省略时为 <code>0</code>。</li>
+            <li><code>atEnd</code>（默认值）：插到文档末尾。</li>
+            <li><code>atCursor</code>：插到你当前光标所在位置。</li>
+            <li><code>afterBlock</code>：插到指定区块之后；配合 <code>after_block_index</code> 使用（从零开始计数，省略时默认为 <code>0</code>）。</li>
           </ul>
-        </section>
+          <h3>典型对话场景</h3>
+          <div class="code">
+            <pre><code><span class="tok-com"># 让 AI 先看看你的文档写了什么</span>
+"帮我读一下 IdeaMarkdown 当前打开的文档，告诉我这段笔记有哪些可以改进的地方"
 
-        <section id="cli">
-          <h2>CLI 命令</h2>
-          <p>CLI 位于安装目录 <code>C:\Users\&lt;用户名&gt;\AppData\Local\IdeaMarkdown\ideamarkdown-cli.exe</code>，随安装包附带，运行命令前应先启动 IdeaMarkdown。</p>
-          <table>
-            <thead>
-              <tr><th>命令</th><th>作用</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>ideamarkdown-cli get</code></td><td>读取当前文档</td></tr>
-              <tr><td><code>ideamarkdown-cli insert "&lt;markdown&gt;" [--position atEnd|atCursor|afterBlock] [--index N]</code></td><td>插入 Markdown 区块</td></tr>
-              <tr><td><code>ideamarkdown-cli insert-code &lt;lang&gt; "&lt;code&gt;" [--position ...] [--index N]</code></td><td>插入带语言标识的代码块</td></tr>
-              <tr><td><code>ideamarkdown-cli replace "&lt;markdown&gt;"</code></td><td>替换整个文档</td></tr>
-              <tr><td><code>ideamarkdown-cli save</code></td><td>将当前文档写入磁盘</td></tr>
-            </tbody>
-          </table>
-          <p><code>--position</code> 默认为 <code>atEnd</code>。<code>--index N</code> 仅在 <code>--position afterBlock</code> 时生效，<code>N</code> 是从零开始的区块索引；省略时为 <code>0</code>。</p>
+<span class="tok-com"># 让 AI 在光标处插入内容</span>
+"在我光标位置插入一个## 注意事项的二级标题"
+
+<span class="tok-com"># 让 AI 帮你加一个代码示例</span>
+"在文档末尾插入一段 Python 代码，用快速排序的实现，叫它 quicksort，要有注释"
+
+<span class="tok-com"># 让 AI 重写整篇文档</span>
+"读取当前文档内容，把它改成英文版"
+
+<span class="tok-com"># 确认无误后落盘</span>
+"把 IdeaMarkdown 的当前文档保存到磁盘"</code></pre>
+          </div>
         </section>
 
         <section id="ai-demo">
-          <h2>端到端示例：插入快速排序代码块</h2>
-          <h3>使用 AI 助手</h3>
+          <h2>端到端示例：让 AI 在文档中插入 Go 快速排序</h2>
+          <p>下面演示通过 MCP 让 AI 助手在打开的文档末尾插入一个 Go 语言快速排序代码块。</p>
           <ol>
-            <li>启动 IdeaMarkdown 并打开一个 Markdown 文档。</li>
-            <li>按上文示例配置 MCP 服务器，然后重启或刷新 AI 客户端，使其加载 <code>ideamarkdown</code>。</li>
-            <li>对助手输入：<em>“在打开的文档里添加一个 Go 语言代码块，写上快速排序算法”</em>。</li>
-            <li>确认助手调用 <code>insert_code_block</code>，其中 <code>lang</code> 为 <code>go</code>、<code>code</code> 为快速排序实现，<code>position</code> 可设为 <code>atEnd</code>。</li>
-            <li>代码块应立即出现在窗口中。按 <kbd>Ctrl</kbd> + <kbd>Z</kbd> 可撤销；需要落盘时再让助手调用 <code>save_document</code>。</li>
+            <li>确保 IdeaMarkdown 正在运行，且已打开一个 <code>.md</code> 文档。</li>
+            <li>确保 MCP 服务器已按上文配置完成，AI 客户端（Cursor / Claude Desktop）已重启并加载了 <code>ideamarkdown</code>。</li>
+            <li>在 AI 对话框中输入：<em>"在 IdeaMarkdown 当前文档末尾插入一个 Go 语言的快速排序代码块"</em>。</li>
+            <li>AI 会调用 <code>insert_code_block(lang="go", code="...", position="atEnd")</code>。</li>
+            <li>代码块立即出现在 IdeaMarkdown 窗口中。如需撤销，按 <kbd>Ctrl</kbd> + <kbd>Z</kbd>。确认无误后让 AI 调用 <code>save_document</code> 落盘。</li>
           </ol>
-          <h3>等价 CLI 命令</h3>
-          <p>在 PowerShell 中保持 IdeaMarkdown 运行，并执行：</p>
-          <div class="code">
-            <pre><code>ideamarkdown-cli insert-code go `
-  <span class="tok-str">"func quicksort(a []int) []int { if len(a) &lt; 2 { return a }; ... }"</span> `
-  --position atEnd</code></pre>
-          </div>
-          <p>运行后检查窗口中是否出现 Go 代码块，并用 <kbd>Ctrl</kbd> + <kbd>Z</kbd> 验证撤销。这个实时窗口往返需要在可交互桌面会话中手动验证。</p>
         </section>
 
-        <section id="faq">
+        <section id="faq" data-simple-hide>
           <h2>常见问题</h2>
           <h3>为什么窗口只有部分区域能拖动？</h3>
           <p>应用采用无边框窗口，只有导航栏的空白背景区可以拖动窗口；菜单、文件名和窗口控制按钮保持可点击。</p>

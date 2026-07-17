@@ -184,6 +184,76 @@
     });
   }
 
+  /* ---- 导航栏文档模式下拉菜单 ------------------------------------------ */
+  var DOCS_MODE_KEY = "ideamarkdown-docs-mode";
+
+  function getDocsMode() {
+    var m = "full";
+    try { m = localStorage.getItem(DOCS_MODE_KEY) || "full"; } catch (e) {}
+    return m;
+  }
+
+  function applyDocsMode(mode) {
+    document.body.classList.toggle("mode-simplified", mode === "simple");
+    try { localStorage.setItem(DOCS_MODE_KEY, mode); } catch (e) {}
+
+    // 更新导航栏主标签文字（.nav-dropdown 的直接子 <a>）
+    var navLabel = mode === "simple" ? "简易文档" : "完整文档";
+    document.querySelectorAll(".nav-dropdown > a[href='docs.html']").forEach(function (a) {
+      a.textContent = navLabel;
+    });
+
+    // 下拉菜单："简易文档"项在 simple 模式下变成"完整文档"（实现互切）
+    document.querySelectorAll(".nav-dropdown-menu a[data-docs-mode='simple']").forEach(function (a) {
+      a.textContent = mode === "simple" ? "完整文档" : "简易文档";
+    });
+
+    // 更新下拉菜单中的 active 标记
+    document.querySelectorAll(".nav-dropdown-menu a[data-docs-mode]").forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("data-docs-mode") === mode);
+    });
+  }
+
+  function initDocsMode() {
+    // 仅在 docs.html 上应用模式
+    if (!document.querySelector(".docs")) return;
+    applyDocsMode(getDocsMode());
+  }
+
+  function initNavDropdown() {
+    document.querySelectorAll(".nav-dropdown").forEach(function (dd) {
+      var arrow = dd.querySelector(".nav-dropdown-arrow");
+      if (!arrow) return;
+
+      arrow.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        var wasOpen = dd.classList.contains("open");
+        // 关闭所有其它下拉
+        document.querySelectorAll(".nav-dropdown.open").forEach(function (d) { d.classList.remove("open"); });
+        if (!wasOpen) dd.classList.add("open");
+      });
+
+      dd.querySelectorAll(".nav-dropdown-menu a[data-docs-mode]").forEach(function (a) {
+        a.addEventListener("click", function (ev) {
+          ev.preventDefault();
+          var mode = a.getAttribute("data-docs-mode");
+          applyDocsMode(mode);
+          dd.classList.remove("open");
+          // 如果不在 docs.html，导航到 docs.html
+          if (!document.querySelector(".docs")) {
+            window.location.href = "docs.html";
+          }
+        });
+      });
+    });
+
+    // 点击页面其它地方关闭下拉
+    document.addEventListener("click", function () {
+      document.querySelectorAll(".nav-dropdown.open").forEach(function (d) { d.classList.remove("open"); });
+    });
+  }
+
   /* ---- 启动 ------------------------------------------------------------- */
   function ready(fn) {
     if (document.readyState !== "loading") fn();
@@ -197,6 +267,8 @@
     initCopyButtons();
     initTabs();
     initScrollSpy();
+    initDocsMode();
+    initNavDropdown();
     initConfigWiring();
   });
 })();
