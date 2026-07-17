@@ -8,8 +8,8 @@ IdeaMarkdown 宣传站点 —— 一款 AI 时代的 Markdown 编辑器，随时
 
 | 页面 | 说明 |
 | --- | --- |
-| [`index.html`](index.html) | 首页：产品介绍、核心功能、AI 控制（MCP + CLI）示例 |
-| [`docs.html`](docs.html) | 文档：安装、编辑器功能、主题导出、MCP/CLI 用法 |
+| [`index.html`](index.html) | 首页：产品介绍、核心功能、AI 控制（MCP）示例 |
+| [`docs.html`](docs.html) | 文档：安装、编辑器功能、主题导出、MCP 用法 |
 | [`download.html`](download.html) | 下载：Windows 安装程序（`.exe`）获取入口 |
 
 ## 目录说明
