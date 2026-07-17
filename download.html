@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>下载 — IdeaMarkdown</title>
+  <meta name="description" content="下载 IdeaMarkdown Windows 安装程序（.exe）。MCP 服务器与 CLI 随安装包附带，无需单独获取。" />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("ideamarkdown-site-theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="assets/icon.png" alt="" width="30" height="30" />
+        IdeaMarkdown
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#features">功能</a>
+        <a href="index.html#ai">AI 控制</a>
+        <a href="docs.html">文档</a>
+        <a href="download.html" class="active">下载</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" type="button" aria-label="切换主题">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="index.html#features">功能</a>
+    <a href="index.html#ai">AI 控制</a>
+    <a href="docs.html">文档</a>
+    <a href="download.html">下载</a>
+  </div>
+
+  <!-- 下载区 -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">下载</span>
+        <h2>获取 IdeaMarkdown</h2>
+        <p>当前版本 <strong>v<span data-version>0.1.4</span></strong> · 支持 Windows。安装包已附带 AI 控制所需的 MCP 服务器与 CLI。</p>
+      </div>
+
+      <div class="dl-grid">
+        <div class="dl-card reveal">
+          <div class="os">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.3 4.5v6.8H3V5.5Zm0 13 7.3 1v-6.7H3v5.7Zm8.3 1.1L21 21v-8.4h-9.7v7Zm0-15.2v7.1H21V3l-9.7 1.4Z"/></svg>
+            <h3>Windows 安装程序</h3>
+          </div>
+          <p class="fmt">NSIS <code>.exe</code> · 一键安装到本地用户目录</p>
+          <a class="btn btn-primary" data-download href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+            <span data-download-label>下载 .exe</span>
+          </a>
+        </div>
+
+        <div class="dl-card reveal d1">
+          <div class="os">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>
+            <h3>内置 AI 控制组件</h3>
+          </div>
+          <p class="fmt">MCP 服务器与命令行 CLI 随安装包一同安装</p>
+          <a class="btn btn-ghost" href="docs.html#ai-control">
+            查看 AI 控制文档
+          </a>
+        </div>
+      </div>
+
+      <div class="dl-note reveal">
+        <b>关于下载：</b>IdeaMarkdown 提供 Windows 安装程序（<code>.exe</code>）；MCP 服务器与命令行工具随安装包一同安装，无需单独获取。下载地址开放后此按钮将自动生效，当前显示为“敬请期待”。
+      </div>
+    </div>
+  </section>
+
+  <!-- AI 控制组件 -->
+  <section class="section section-alt" id="ai-tools">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">随包附带</span>
+        <h2>MCP 服务器与 CLI，开箱即用</h2>
+        <p>安装 IdeaMarkdown 后，AI 控制所需的 <code>ideamarkdown-mcp.exe</code> 与 <code>ideamarkdown-cli.exe</code> 已在安装目录中，无需单独下载或自行编译。</p>
+      </div>
+      <p class="center muted" style="margin-top: 8px;">
+        配置方法与命令详见 <a href="docs.html#ai-control">AI 控制指南</a>。
+      </p>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="assets/icon.png" alt="" width="26" height="26" />
+        IdeaMarkdown
+      </a>
+      <nav class="footer-links">
+        <a href="index.html#features">功能</a>
+        <a href="index.html#ai">AI 控制</a>
+        <a href="docs.html">文档</a>
+        <a href="download.html">下载</a>
+      </nav>
+      <small>© 2026 IdeaMarkdown · AI 时代的 Markdown 编辑器，随时随地利用 AI 记录你的创意想法</small>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

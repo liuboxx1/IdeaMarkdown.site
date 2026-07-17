@@ -1,0 +1,40 @@
+# ---- 操作系统 ----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ---- 编辑器 / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# ---- 日志与临时文件 ----
+*.log
+logs/
+*.tmp
+*.temp
+*.bak
+
+# ---- 依赖与构建产物（如后续引入工具链）----
+node_modules/
+dist/
+build/
+.cache/
+
+# ---- 环境变量 ----
+.env
+.env.local
+.env.*.local
+
+# ---- 临时预览 / 验证截图 ----
+_v-*.png
